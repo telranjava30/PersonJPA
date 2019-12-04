@@ -1,6 +1,7 @@
 package telran.person.service;
 
 import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,14 +56,19 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Iterable<PersonDto> findPersonsByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.findByName(name)
+				.stream()
+				.map(this::convertToPersonDto)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Iterable<PersonDto> findPersonsByAges(int min, int max) {
-		// TODO Auto-generated method stub
-		return null;
+		LocalDate from = LocalDate.now().minusYears(max);
+		LocalDate to = LocalDate.now().minusYears(min);
+		return personRepository.findByBirthDateBetween(from, to).stream()
+				.map(this::convertToPersonDto)
+				.collect(Collectors.toList());
 	}
 
 }

@@ -27,5 +27,15 @@ public class PersonController {
 	public PersonDto findPersonById(@PathVariable int id) {
 		return personService.findPersonById(id);
 	}
+	
+	@GetMapping("/name/{name}")
+	public Iterable<PersonDto> findSameNamePersons(@PathVariable String name) {
+		return personService.findPersonsByName(name);
+	}
+	
+	@GetMapping("/ages/{min}/{max}")
+	public Iterable<PersonDto> findPersonsByAges(@PathVariable int min, @PathVariable int max) {
+		return personService.findPersonsByAges(min, max);
+	}
 
 }
