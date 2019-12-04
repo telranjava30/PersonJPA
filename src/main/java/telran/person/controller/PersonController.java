@@ -37,5 +37,10 @@ public class PersonController {
 	public Iterable<PersonDto> findPersonsByAges(@PathVariable int min, @PathVariable int max) {
 		return personService.findPersonsByAges(min, max);
 	}
+	
+	@GetMapping("/city/{city}")
+	public Iterable<PersonDto> findByCity(@PathVariable String city) {
+		return personService.findPersonsByCity(city);
+	}
 
 }

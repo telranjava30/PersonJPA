@@ -3,8 +3,11 @@ package telran.person.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +25,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "persons")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements Serializable{
 	/**
 	 * 
@@ -32,5 +36,7 @@ public class Person implements Serializable{
 	int id;
 	String name;
 	LocalDate birthDate;
+	//@Embedded
+	Address address;
 
 }

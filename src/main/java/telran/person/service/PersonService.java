@@ -11,5 +11,11 @@ public interface PersonService {
 	Iterable<PersonDto> findPersonsByName(String name);
 	
 	Iterable<PersonDto> findPersonsByAges(int min, int max);
+	
+	Iterable<PersonDto> findPersonsByCity(String city);
+	
+	Iterable<PersonDto> findEmployeesBySalary(int min, int max);
+	
+	Iterable<PersonDto> findChildren();
 
 }
