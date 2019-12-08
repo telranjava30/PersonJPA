@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import telran.person.dao.PersonRepository;
 import telran.person.dto.ChildDto;
+import telran.person.dto.CityPopulationDto;
 import telran.person.dto.EmployeeDto;
 import telran.person.dto.PersonDto;
 import telran.person.model.Child;
@@ -112,14 +113,21 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public Iterable<PersonDto> findEmployeesBySalary(int min, int max) {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.findBySalaryBetween(min, max).stream()
+				.map(this::convertToPersonDto)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	public Iterable<PersonDto> findChildren() {
-		// TODO Auto-generated method stub
-		return null;
+		return personRepository.findBy().stream()
+				.map(this::convertToPersonDto)
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Iterable<CityPopulationDto> getCityPopulation() {
+		return personRepository.getCityPopulation();
 	}
 
 }
